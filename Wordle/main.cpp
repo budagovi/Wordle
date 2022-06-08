@@ -139,6 +139,8 @@ int main() {
 
                 if (e.mouseButton.button == sf::Mouse::Left) {
 
+                    cout << e.mouseButton.x << endl;
+                    cout << e.mouseButton.y << endl;
                     if (e.mouseButton.x > 1080 && e.mouseButton.x < 1120 && e.mouseButton.y>20 && e.mouseButton.y < 60) mainWindow.close();
 
                 }
