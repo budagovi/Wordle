@@ -362,10 +362,9 @@ int main() {
                         //cout << "---- 1)  " << h << endl;
                         for (int j = 0; j < attempt.length(); ++j) {
                             for (int f = 0; f < word.length(); ++f) {
-                                if (attempt[j] == word[f] && !isupper(h[j])) {
+                                if (attempt[j] == test[f] && !isupper(h[j])) {
 
                                     puzzles[count][j].setFillColor(Color(236, 215, 124));
-
                                     h[j] = attempt[j];
                                 }
                             }
@@ -376,12 +375,8 @@ int main() {
                         for (int j = 0; j < h.length(); ++j) {
                             if (isupper(h[j])) result[j] = char(h[j] + 32);
                         }
-                        if (result == word) {
-                            mainWindow.close();
-                        }
-
-
-                        if (result == word) {
+                       
+                        if (attempt == word) {
                             mainWindow.close();
                         }
 
