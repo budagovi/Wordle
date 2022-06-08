@@ -1,9 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/window.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
+#include "Puzzle.h"
 using namespace sf;
 using namespace std;
 
@@ -18,7 +13,10 @@ int main() {
 
     int xCoordinate = 330, yCoordinate = 150, count = 0;
 
-    for (int i = 0; i < 5; ++i) {
+    Vector2f pos(100, 100), cor(xCoordinate, yCoordinate);
+
+    Puzzle puzzle[3];
+    /*for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
             puzzles[i][j].setSize(Vector2f(100, 100));
             puzzles[i][j].setPosition(Vector2f(xCoordinate, yCoordinate));
@@ -29,11 +27,11 @@ int main() {
        }
         xCoordinate = 330;
         yCoordinate += 110;
-    }
+    } */
     
     int x = 0;
     int y = 0;
-    string word="lucas";
+    string word="count";
     string attempt = "";
     string test(word);
     string result = "-----";
@@ -93,10 +91,10 @@ int main() {
     Texture empty;
     empty.loadFromFile("C:/VisualStudio/Wordle/Wordle/Bg.png");
 
-    RectangleShape Pause;
+    /*RectangleShape Pause;
     Pause.setSize(Vector2f(300, 100));
     Pause.setPosition(Vector2f(600, 450));
-    Pause.setFillColor(Color::Red);
+    Pause.setFillColor(Color::Red); */
 
 
     while (mainWindow.isOpen()) {
@@ -285,13 +283,17 @@ int main() {
             }
         }
 
-        mainWindow.clear(Color(221, 221, 221)); //grey
+        mainWindow.clear(Color(2, 150, 45)); //grey
 
+        mainWindow.draw(first.shape());
+        /*
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
                 mainWindow.draw(puzzles[i][j]);
             }
         }
+
+        */
 
         mainWindow.display();
     }
