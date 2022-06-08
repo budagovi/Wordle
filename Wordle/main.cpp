@@ -1,4 +1,3 @@
-
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/window.hpp>
@@ -11,15 +10,15 @@ using namespace std;
 
 int main() {
 
-    
+
     RenderWindow mainWindow(VideoMode(1200, 900), "Wordle", Style::Close);
     mainWindow.setKeyRepeatEnabled(false);
     mainWindow.setFramerateLimit(60);
-    
+
     RectangleShape puzzles[5][5];
 
     int xCoordinate = 330, yCoordinate = 150, count = 0;
-    
+
 
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
@@ -29,14 +28,14 @@ int main() {
             puzzles[i][j].setFillColor(Color(221, 221, 221));
             puzzles[i][j].setOutlineColor(Color::Black);
             xCoordinate += 110;
-       }
+        }
         xCoordinate = 330;
         yCoordinate += 110;
-    } 
-    
+    }
+
     int x = 0;
     int y = 0;
-    string word="count";
+    string word = "count";
     string attempt = "";
     string test(word);
     string result = "-----";
@@ -105,16 +104,16 @@ int main() {
     while (mainWindow.isOpen()) {
 
         Event e;
-      
+
 
         while (mainWindow.pollEvent(e)) {
             if (e.type == Event::Closed)
-                mainWindow.close();          
+                mainWindow.close();
 
             if (e.type == Event::KeyPressed) {
 
                 if (Keyboard::isKeyPressed(Keyboard::A)) {
-                    if (y >=0 && y<5) {
+                    if (y >= 0 && y < 5) {
                         puzzles[x][y].setTexture(&A);
                         attempt += 'a';
                         y++;
@@ -220,133 +219,133 @@ int main() {
                     }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::P)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&P);
-                    attempt += 'p';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&P);
+                        attempt += 'p';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Q)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&Q);
-                    attempt += 'q';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&Q);
+                        attempt += 'q';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::R)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&R);
-                    attempt += 'r';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&R);
+                        attempt += 'r';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::S)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&S);
-                    attempt += 's';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&S);
+                        attempt += 's';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::T)) {
                     puzzles[x][y].setTexture(&T);
                     attempt += 't';
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::U)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&U);
-                    attempt += 'u';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&U);
+                        attempt += 'u';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::V)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&V);
-                    attempt += 'v';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&V);
+                        attempt += 'v';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::W)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&W);
-                    attempt += 'w';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&W);
+                        attempt += 'w';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::X)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&X);
-                    attempt += 'x';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&X);
+                        attempt += 'x';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Y)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&Y);
-                    attempt += 'y';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&Y);
+                        attempt += 'y';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Z)) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&Z);
-                    attempt += 'z';
-                    y++;
-                }
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&Z);
+                        attempt += 'z';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
-                if (attempt.length() != 5) {
-                    y--;
-                }
-                else {
-                    string h = "*****";
-                    for (int j = 0; j < word.length(); ++j) {
-
-                        for (int g = 0; g < h.length(); ++g) {
-                            if (islower(h[g])) h[g] = '*';
-                        }
-
-                        if (h[j] == '*') {
-
-                            if (attempt[j] != word[j]) {
-                                h[j] = '*';
-                            }
-                            if (attempt[j] == word[j]) {
-                                puzzles[count][j].setFillColor(Color::Green);
-                                h[j] = char(int(word[j]) - 32);
-                                test[j] = '*';
-                            }
-                        }
+                    if (attempt.length() != 5) {
+                        y--;
                     }
-                    //cout << "---- 1)  " << h << endl;
-                    for (int j = 0; j < attempt.length(); ++j) {
-                        for (int f = 0; f < word.length(); ++f) {
-                            if (attempt[j] == word[f] && !isupper(h[j])) { 
-                                puzzles[count][j].setFillColor(Color::Yellow);
-                                h[j] = attempt[j]; 
+                    else {
+                        string h = "*****";
+                        for (int j = 0; j < word.length(); ++j) {
+
+                            for (int g = 0; g < h.length(); ++g) {
+                                if (islower(h[g])) h[g] = '*';
+                            }
+
+                            if (h[j] == '*') {
+
+                                if (attempt[j] != word[j]) {
+                                    h[j] = '*';
+                                }
+                                if (attempt[j] == word[j]) {
+                                    puzzles[count][j].setFillColor(Color::Green);
+                                    h[j] = char(int(word[j]) - 32);
+                                    test[j] = '*';
+                                }
                             }
                         }
-                    }
-                    count++;
-                    attempt = "";
+                        //cout << "---- 1)  " << h << endl;
+                        for (int j = 0; j < attempt.length(); ++j) {
+                            for (int f = 0; f < word.length(); ++f) {
+                                if (attempt[j] == word[f] && !isupper(h[j])) {
+                                    puzzles[count][j].setFillColor(Color::Yellow);
+                                    h[j] = attempt[j];
+                                }
+                            }
+                        }
+                        count++;
+                        attempt = "";
 
-                    for (int j = 0; j < h.length(); ++j) {
-                        if (isupper(h[j])) result[j] = char(h[j] + 32);
+                        for (int j = 0; j < h.length(); ++j) {
+                            if (isupper(h[j])) result[j] = char(h[j] + 32);
+                        }
+
+                        if (result == word) {
+                            mainWindow.close();
+                        }
+
+                        y = 0;
+                        x++;
                     }
 
-                    if (result == word) {
-                        mainWindow.close();
-                    }
-
-                    y = 0;
-                    x++;
-                }
-                
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::BackSpace) || Keyboard::isKeyPressed(Keyboard::Backspace)) {
-                if (y != 0 ) {
-                    y--;
-                    puzzles[x][y].setTexture(&empty);
-                    attempt = attempt.substr(0, attempt.length() - 1);
+                    if (y != 0) {
+                        y--;
+                        puzzles[x][y].setTexture(&empty);
+                        attempt = attempt.substr(0, attempt.length() - 1);
                     }
                 }
                 else if (y == 0) {
@@ -354,31 +353,31 @@ int main() {
                 }
 
                 //puzzles[x][y].setFillColor(Color::Blue);
-                
+
                 if (x == 5) mainWindow.close();   //needs to be edited
-               
-                
+
+
             }
-            
+
             //puzzles[1][0].setFillColor(Color::Yellow);
         }
 
         mainWindow.clear(Color(221, 221, 221)); //grey
 
-        
-        
+
+
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
                 mainWindow.draw(puzzles[i][j]);
             }
         }
 
-        
+
 
         mainWindow.display();
     }
 
- 
-    
+
+
     return 0;
 }
