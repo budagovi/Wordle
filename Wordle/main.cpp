@@ -4,7 +4,7 @@
 #include <SFML/Network.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
-
+//jiho
 using namespace sf;
 using namespace std;
 
@@ -17,15 +17,39 @@ int main() {
 
     RectangleShape puzzles[5][5];
 
-    int xCoordinate = 330, yCoordinate = 150, count = 0;
+    CircleShape Exit;
+    Exit.setRadius(40);
+    Exit.setFillColor(Color(237, 210, 183));
+    Exit.setPosition(1080, 20);
+    Texture exit;
+    exit.loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");
+    Exit.setTexture(&exit);
 
+    RectangleShape WordleText;
+    WordleText.setSize(Vector2f(325, 74));
+    WordleText.setPosition(Vector2f(-2, 14));
+    Texture wordleText;
+    wordleText.loadFromFile("C:/VisualStudio/Wordle/Wordle/WordleText.png");
+    WordleText.setTexture(&wordleText);
+    WordleText.setFillColor(Color(237, 210, 183));
+
+    RectangleShape Names;
+    Names.setSize(Vector2f(241, 55));
+    Names.setPosition(Vector2f(0, 90));
+    Texture names;
+    names.loadFromFile("C:/VisualStudio/Wordle/Wordle/lukabela.png");
+    Names.setTexture(&names);
+    Names.setFillColor(Color(237, 210, 183));
+
+
+    int xCoordinate = 330, yCoordinate = 100, count = 0;
 
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
             puzzles[i][j].setSize(Vector2f(100, 100));
             puzzles[i][j].setPosition(Vector2f(xCoordinate, yCoordinate));
-            puzzles[i][j].setOutlineThickness(1);
-            puzzles[i][j].setFillColor(Color(221, 221, 221));
+            puzzles[i][j].setOutlineThickness(3);
+            puzzles[i][j].setFillColor(Color(219, 141, 148));
             puzzles[i][j].setOutlineColor(Color::Black);
             xCoordinate += 110;
         }
@@ -109,6 +133,17 @@ int main() {
         while (mainWindow.pollEvent(e)) {
             if (e.type == Event::Closed)
                 mainWindow.close();
+
+            if (Keyboard::isKeyPressed(Keyboard::Escape)) mainWindow.close();
+
+            if (e.type == sf::Event::MouseButtonPressed) {
+
+                if (e.mouseButton.button == sf::Mouse::Left) {
+
+                    if (e.mouseButton.x > 1080 && e.mouseButton.x < 1120 && e.mouseButton.y>20 && e.mouseButton.y < 60) mainWindow.close();
+
+                }
+            }
 
             if (e.type == Event::KeyPressed) {
 
@@ -247,8 +282,11 @@ int main() {
                     }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::T)) {
-                    puzzles[x][y].setTexture(&T);
-                    attempt += 't';
+                    if (y >= 0 && y < 5) {
+                        puzzles[x][y].setTexture(&T);
+                        attempt += 't';
+                        y++;
+                    }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::U)) {
                     if (y >= 0 && y < 5) {
@@ -295,6 +333,9 @@ int main() {
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
                     if (attempt.length() != 5) {
                         y--;
+
+                        y++;
+
                     }
                     else {
                         string h = "*****";
@@ -310,7 +351,10 @@ int main() {
                                     h[j] = '*';
                                 }
                                 if (attempt[j] == word[j]) {
-                                    puzzles[count][j].setFillColor(Color::Green);
+
+                                    puzzles[count][j].setFillColor(Color(108, 218, 113));
+
+
                                     h[j] = char(int(word[j]) - 32);
                                     test[j] = '*';
                                 }
@@ -320,7 +364,9 @@ int main() {
                         for (int j = 0; j < attempt.length(); ++j) {
                             for (int f = 0; f < word.length(); ++f) {
                                 if (attempt[j] == word[f] && !isupper(h[j])) {
-                                    puzzles[count][j].setFillColor(Color::Yellow);
+
+                                    puzzles[count][j].setFillColor(Color(236, 215, 124));
+
                                     h[j] = attempt[j];
                                 }
                             }
@@ -331,6 +377,10 @@ int main() {
                         for (int j = 0; j < h.length(); ++j) {
                             if (isupper(h[j])) result[j] = char(h[j] + 32);
                         }
+                        if (result == word) {
+                            mainWindow.close();
+                        }
+
 
                         if (result == word) {
                             mainWindow.close();
@@ -364,7 +414,11 @@ int main() {
 
         mainWindow.clear(Color(221, 221, 221)); //grey
 
+        mainWindow.clear(Color(237, 210, 183)); //grey
 
+        mainWindow.draw(Exit);
+        mainWindow.draw(WordleText);
+        mainWindow.draw(Names);
 
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
