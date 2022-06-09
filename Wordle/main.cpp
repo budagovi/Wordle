@@ -4,6 +4,7 @@
 #include <SFML/Network.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include "Button.h"
 using namespace sf;
 using namespace std;
 
@@ -16,6 +17,9 @@ int main() {
 
     RectangleShape puzzles[5][5];
 
+
+    
+    /*
     CircleShape Exit;
     Exit.setRadius(40);
     Exit.setFillColor(Color(237, 210, 183));
@@ -23,6 +27,7 @@ int main() {
     Texture exit;
     exit.loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");
     Exit.setTexture(&exit);
+    */
 
     RectangleShape WordleText;
     WordleText.setSize(Vector2f(325, 74));
@@ -61,7 +66,6 @@ int main() {
     string word = "count";
     string attempt = "";
     string test(word);
-    string result = "-----";
 
     Texture A;
     A.loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");
@@ -118,18 +122,20 @@ int main() {
     Texture empty;
     empty.loadFromFile("C:/VisualStudio/Wordle/Wordle/Bg.png");
 
-    /*RectangleShape Pause;
-    Pause.setSize(Vector2f(300, 100));
-    Pause.setPosition(Vector2f(600, 450));
-    Pause.setFillColor(Color::Red); */
 
+    Button Exit;
+    Texture exit;
+    exit.loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");
 
     while (mainWindow.isOpen()) {
-
+        
         Event e;
-
-
+        
         while (mainWindow.pollEvent(e)) {
+
+            
+            Exit.createButton(Vector2f(1080, 20), Vector2f(80, 80), e, Color(237, 210, 183), exit);
+
             if (e.type == Event::Closed)
                 mainWindow.close();
 
@@ -141,10 +147,7 @@ int main() {
 
                     cout << e.mouseButton.x << endl;
                     cout << e.mouseButton.y << endl;
-                    if (e.mouseButton.x > 1080 && e.mouseButton.x < 1160 && e.mouseButton.y>20 && e.mouseButton.y < 100) {
-                        mainWindow.close();
-                        cout << "close";
-                    }
+                    if (Exit.isClicked()) mainWindow.close();
 
                 }
             }
@@ -335,21 +338,13 @@ int main() {
                     }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
-
-                
                     if (attempt.length() != 5) {
                         y--;
 
                         y++;
 
                     }
-
-
-
                     else {
-                        if (attempt == word) {
-                            mainWindow.close();
-                        }
                         string h = "*****";
                         for (int j = 0; j < word.length(); ++j) {
 
@@ -382,16 +377,19 @@ int main() {
                                 }
                             }
                         }
-                        count++;
-                        cout << attempt<<" "<< attempt.length()<<endl;
-                        attempt = "";
-                        cout << word << " " << word.length() << endl;;
 
-                        for (int j = 0; j < h.length(); ++j) {
-                            if (isupper(h[j])) result[j] = char(h[j] + 32);
+                        for (int i = 0; i < 5; ++i) {
+                            if (h[i] == '*') puzzles[count][i].setFillColor(Color(221, 221, 221));   // set the color for missed letters
+                            puzzles[count][i].setOutlineThickness(3);  //set the thicknes of used puzzles (or change color and maintain initial thickness)
+                        } 
+
+                        if (attempt == word) {
+                            mainWindow.close();
                         }
-                       
-                     
+
+                        count++;
+                        attempt = "";
+
 
                         y = 0;
                         x++;
@@ -421,7 +419,7 @@ int main() {
 
         mainWindow.clear(Color(237, 210, 183)); //grey
 
-        mainWindow.draw(Exit);
+        mainWindow.draw(Exit.getButton());
         mainWindow.draw(WordleText);
         mainWindow.draw(Names);
 
@@ -437,7 +435,7 @@ int main() {
     }
 
 
-    
+
 
     return 0;
 }
