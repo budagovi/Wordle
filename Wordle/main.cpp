@@ -332,13 +332,21 @@ int main() {
                     }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
+
+                
                     if (attempt.length() != 5) {
                         y--;
 
                         y++;
 
                     }
+
+
+
                     else {
+                        if (attempt == word) {
+                            mainWindow.close();
+                        }
                         string h = "*****";
                         for (int j = 0; j < word.length(); ++j) {
 
@@ -372,15 +380,15 @@ int main() {
                             }
                         }
                         count++;
+                        cout << attempt<<" "<< attempt.length()<<endl;
                         attempt = "";
+                        cout << word << " " << word.length() << endl;;
 
                         for (int j = 0; j < h.length(); ++j) {
                             if (isupper(h[j])) result[j] = char(h[j] + 32);
                         }
                        
-                        if (attempt == word) {
-                            mainWindow.close();
-                        }
+                     
 
                         y = 0;
                         x++;
@@ -407,8 +415,6 @@ int main() {
 
             //puzzles[1][0].setFillColor(Color::Yellow);
         }
-
-        mainWindow.clear(Color(221, 221, 221)); //grey
 
         mainWindow.clear(Color(237, 210, 183)); //grey
 
