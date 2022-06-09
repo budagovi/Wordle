@@ -141,7 +141,10 @@ int main() {
 
                     cout << e.mouseButton.x << endl;
                     cout << e.mouseButton.y << endl;
-                    if (e.mouseButton.x > 1080 && e.mouseButton.x < 1120 && e.mouseButton.y>20 && e.mouseButton.y < 60) mainWindow.close();
+                    if (e.mouseButton.x > 1080 && e.mouseButton.x < 1160 && e.mouseButton.y>20 && e.mouseButton.y < 100) {
+                        mainWindow.close();
+                        cout << "close";
+                    }
 
                 }
             }
