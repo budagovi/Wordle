@@ -45,6 +45,4 @@ public:
 		else return false;
 	}
 	
-	
 };
-

@@ -24,6 +24,27 @@ int main() {
     Exit.setTexture(&exit);
     */
 
+    Font font;
+    if (!font.loadFromFile("C:/VisualStudio/Wordle/Wordle/Fonts/comic.ttf"))
+        throw("Couldntload");
+
+    Text youWon;
+    youWon.setFont(font);
+    youWon.setCharacterSize(72);
+    youWon.setFillColor(Color::Black);
+    youWon.setStyle(Text::Bold);
+    youWon.setPosition(440, 680);
+    youWon.setString("You Won!");
+
+    Text youLost;
+    youLost.setFont(font);
+    youLost.setCharacterSize(72);
+    youLost.setFillColor(Color::Black);
+    youLost.setStyle(Text::Bold);
+    youLost.setPosition(440, 680);
+    youLost.setString("You Lost;(");
+
+    
     RectangleShape WordleText;
     WordleText.setSize(Vector2f(325, 74));
     WordleText.setPosition(Vector2f(-2, 14));
@@ -39,7 +60,6 @@ int main() {
     names.loadFromFile("C:/VisualStudio/Wordle/Wordle/lukabela.png");
     Names.setTexture(&names);
     Names.setFillColor(Color(237, 210, 183));
-
 
     int xCoordinate = 330, yCoordinate = 100, count = 0;
 
@@ -58,6 +78,15 @@ int main() {
 
     int x = 0, y=0;
     string word = "couch", attempt = "";
+
+
+    Text guess;
+    guess.setFont(font);
+    guess.setCharacterSize(72);
+    guess.setFillColor(Color::Red);
+    guess.setStyle(Text::Bold);
+    guess.setPosition(505, 790);
+    guess.setString(word);
 
     Texture A;
     A.loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");
@@ -355,15 +384,15 @@ int main() {
                         }
                         //ITERATING THROUGH THE WORD TO DETECT GREY LETTERS;
                         for (int i = 0; i < 5; ++i) {
-                            if (h[i] == '*') puzzles[count][i].setFillColor(Color(221, 221, 221));   // set the color for missed letters
-                            puzzles[count][i].setOutlineThickness(3);  //set the thicknes of used puzzles (or change color and maintain initial thickness)
-                            puzzles[count][i].setOutlineColor(Color::Yellow); // set outline Color
+                            if (h[i] == '*') puzzles[count][i].setFillColor(Color(203, 93, 103));   // set the color for missed letters
+                            puzzles[count][i].setOutlineThickness(5);  //set the thicknes of used puzzles (or change color and maintain initial thickness)
+                            puzzles[count][i].setOutlineColor(Color::Black); // set outline Color
                         } 
                         //CHECK IF ENTERED WORD IS CORRECTLY GUESSED
-                        if (attempt == word) {
-                            mainWindow.close();
-                        }
+                     if (attempt == word) {
+                         mainWindow.close();
 
+                     }
                         count++;
                         attempt = "";
                         y = 0;
@@ -382,21 +411,26 @@ int main() {
                     continue;
                 }
 
+
+
                 //puzzles[x][y].setFillColor(Color::Blue);
 
-                if (x == 5) mainWindow.close();   //needs to be edited
-
-
+                if (x == 5)  mainWindow.close();//needs to be edited
+                
             }
 
             //puzzles[1][0].setFillColor(Color::Yellow);
         }
 
         mainWindow.clear(Color(237, 210, 183)); //grey
-
         mainWindow.draw(Exit.getButton());
         mainWindow.draw(WordleText);
         mainWindow.draw(Names);
+       
+        //mainWindow.draw(youWon);
+        mainWindow.draw(youLost);//
+                                //       TEST
+        mainWindow.draw(guess);//
 
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
@@ -408,9 +442,7 @@ int main() {
 
         mainWindow.display();
     }
-
-
-
+    
 
     return 0;
 }
