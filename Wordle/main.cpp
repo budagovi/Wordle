@@ -1,9 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/window.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
+
 #include "Button.h"
 using namespace sf;
 using namespace std;
@@ -61,11 +56,8 @@ int main() {
         yCoordinate += 110;
     }
 
-    int x = 0;
-    int y = 0;
-    string word = "count";
-    string attempt = "";
-    string test(word);
+    int x = 0, y=0;
+    string word = "couch", attempt = "";
 
     Texture A;
     A.loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");
@@ -338,59 +330,42 @@ int main() {
                     }
                 }
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
-                    if (attempt.length() != 5) {
-                        y--;
+                    if (attempt.length() == 5) {
 
-                        y++;
+                        string h = "*****";         // TO DETECT GREY LETTERS;
+                        string check(word);         // TO DETECT GREEN AND YELLOW LETTERS;
 
-                    }
-                    else {
-                        string h = "*****";
-                        for (int j = 0; j < word.length(); ++j) {
-
-                            for (int g = 0; g < h.length(); ++g) {
-                                if (islower(h[g])) h[g] = '*';
+                        //ITERATING THROUGH THE WORD TO DETECT GREEN WORDS;
+                        for (int i= 0; i < 5; ++i) {
+                            if (attempt[i] == word[i]) {
+                                puzzles[count][i].setFillColor(Color(108, 218, 113));   
+                                h[i] = '-';                                                             
+                                check[i] = '*';
                             }
-
-                            if (h[j] == '*') {
-
-                                if (attempt[j] != word[j]) {
-                                    h[j] = '*';
-                                }
-                                if (attempt[j] == word[j]) {
-
-                                    puzzles[count][j].setFillColor(Color(108, 218, 113));
-
-
-                                    h[j] = char(int(word[j]) - 32);
-                                    test[j] = '*';
+                            
+                        }
+                        //ITERATING THROUGH THE WORD TO DETECT YELLOW LETTERS;
+                        for (int i = 0; i < 5; ++i) {
+                            for (int j = 0; j < 5; ++j) {
+                                if (attempt[i] == check[j] && check[i]!='*') {      //HERE WE DONT CHECK ALREADY GUESSED (GREEN) LETTERS (check[i]!='*')
+                                    puzzles[count][i].setFillColor(Color(236, 215, 124));
+                                    h[i] = '-';
                                 }
                             }
                         }
-                        //cout << "---- 1)  " << h << endl;
-                        for (int j = 0; j < attempt.length(); ++j) {
-                            for (int f = 0; f < word.length(); ++f) {
-                                if (attempt[j] == test[f] && !isupper(h[j])) {
-
-                                    puzzles[count][j].setFillColor(Color(236, 215, 124));
-                                    h[j] = attempt[j];
-                                }
-                            }
-                        }
-
+                        //ITERATING THROUGH THE WORD TO DETECT GREY LETTERS;
                         for (int i = 0; i < 5; ++i) {
                             if (h[i] == '*') puzzles[count][i].setFillColor(Color(221, 221, 221));   // set the color for missed letters
                             puzzles[count][i].setOutlineThickness(3);  //set the thicknes of used puzzles (or change color and maintain initial thickness)
+                            puzzles[count][i].setOutlineColor(Color::Yellow); // set outline Color
                         } 
-
+                        //CHECK IF ENTERED WORD IS CORRECTLY GUESSED
                         if (attempt == word) {
                             mainWindow.close();
                         }
 
                         count++;
                         attempt = "";
-
-
                         y = 0;
                         x++;
                     }
