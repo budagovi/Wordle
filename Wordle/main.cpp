@@ -361,7 +361,7 @@ int main() {
                 else if (Keyboard::isKeyPressed(Keyboard::Enter)) {
                     if (attempt.length() == 5) {
 
-                        string h = "*****";         // TO DETECT GREY LETTERS;
+                        string h = "*****";         // TO DETECT RED LETTERS;
                         string check(word);         // TO DETECT GREEN AND YELLOW LETTERS;
 
                         //ITERATING THROUGH THE WORD TO DETECT GREEN WORDS;
@@ -382,11 +382,11 @@ int main() {
                                 }
                             }
                         }
-                        //ITERATING THROUGH THE WORD TO DETECT GREY LETTERS;
+                        //ITERATING THROUGH THE WORD TO DETECT RED LETTERS;
                         for (int i = 0; i < 5; ++i) {
-                            if (h[i] == '*') puzzles[count][i].setFillColor(Color(203, 93, 103));   // set the color for missed letters
-                            puzzles[count][i].setOutlineThickness(5);  //set the thicknes of used puzzles (or change color and maintain initial thickness)
-                            puzzles[count][i].setOutlineColor(Color::Black); // set outline Color
+                            if (h[i] == '*') puzzles[count][i].setFillColor(Color(203, 93, 103));  
+                            puzzles[count][i].setOutlineThickness(5);  
+                            puzzles[count][i].setOutlineColor(Color::Black); 
                         } 
                         //CHECK IF ENTERED WORD IS CORRECTLY GUESSED
                      if (attempt == word) {
@@ -413,16 +413,16 @@ int main() {
 
 
 
-                //puzzles[x][y].setFillColor(Color::Blue);
+                
 
-                if (x == 5)  mainWindow.close();//needs to be edited
+                if (x == 5)  mainWindow.close(); // needs to be edited
                 
             }
 
-            //puzzles[1][0].setFillColor(Color::Yellow);
+            
         }
 
-        mainWindow.clear(Color(237, 210, 183)); //grey
+        mainWindow.clear(Color(237, 210, 183)); 
         mainWindow.draw(Exit.getButton());
         mainWindow.draw(WordleText);
         mainWindow.draw(Names);
