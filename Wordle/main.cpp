@@ -31,7 +31,7 @@ int main() {
     youLost.setPosition(440, 680);
     youLost.setString("You Lost;(");
 
-    
+
     RectangleShape WordleText;
     WordleText.setSize(Vector2f(325, 74));
     WordleText.setPosition(Vector2f(-2, 14));
@@ -64,7 +64,7 @@ int main() {
         yCoordinate += 110;
     }
 
-    int x = 0, y=0;
+    int x = 0, y = 0;
     string word = "couch", attempt = "";
 
 
@@ -112,10 +112,11 @@ int main() {
     exit.loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");
 
     bool isGuessed = false;
+
     while (mainWindow.isOpen()) {
-        
+
         Event e;
-        
+
         while (mainWindow.pollEvent(e)) {
 
             //BUTTON CONSTRUCTORS:
@@ -123,7 +124,7 @@ int main() {
 
             //WINDOW CLOSE CASES
             if (e.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape)) mainWindow.close();
-               
+
             //BOTTOMS SECTION
             if (e.type == sf::Event::MouseButtonPressed) {
 
@@ -135,11 +136,11 @@ int main() {
 
                 }
             }
-
+            
             //ENTERING LOWER CASE LETTERS INTO THE ROW OF 5 PUZZLES
-            if (e.type == Event::TextEntered && e.text.unicode>96 && e.text.unicode<123 && !isGuessed) {
-                if (y >= 0 && y < 5) {
-                    puzzles[x][y].setTexture(&Letters[e.text.unicode-97]);
+            if (e.type == Event::TextEntered && e.text.unicode > 96 && e.text.unicode < 123) {
+                if (y >= 0 && y < 5 && !isGuessed) {
+                    puzzles[x][y].setTexture(&Letters[e.text.unicode - 97]);
                     attempt += char(e.text.unicode);
                     y++;
                     cout << attempt << endl;
@@ -152,17 +153,17 @@ int main() {
                     string check(word);         // TO DETECT GREEN AND YELLOW LETTERS;
 
                     //ITERATING THROUGH THE WORD TO DETECT GREEN WORDS;
-                    for (int i= 0; i < 5; ++i) {
+                    for (int i = 0; i < 5; ++i) {
                         if (attempt[i] == word[i]) {
-                            puzzles[count][i].setFillColor(Color(108, 218, 113));   
-                            h[i] = '-';                                                             
+                            puzzles[count][i].setFillColor(Color(108, 218, 113));
+                            h[i] = '-';
                             check[i] = '*';
                         }
                     }
                     //ITERATING THROUGH THE WORD TO DETECT YELLOW LETTERS;
                     for (int i = 0; i < 5; ++i) {
                         for (int j = 0; j < 5; ++j) {
-                            if (attempt[i] == check[j] && check[i]!='*') {      //HERE WE DONT CHECK ALREADY GUESSED (GREEN) LETTERS (check[i]!='*')
+                            if (attempt[i] == check[j] && check[i] != '*') {      //HERE WE DONT CHECK ALREADY GUESSED (GREEN) LETTERS (check[i]!='*')
                                 puzzles[count][i].setFillColor(Color(236, 215, 124));
                                 h[i] = '-';
                             }
@@ -170,18 +171,18 @@ int main() {
                     }
                     //ITERATING THROUGH THE WORD TO DETECT RED LETTERS;
                     for (int i = 0; i < 5; ++i) {
-                        if (h[i] == '*') puzzles[count][i].setFillColor(Color(203, 93, 103));  
-                        puzzles[count][i].setOutlineThickness(5);  
-                        puzzles[count][i].setOutlineColor(Color::Black); 
-                    } 
+                        if (h[i] == '*') puzzles[count][i].setFillColor(Color(203, 93, 103));
+                        puzzles[count][i].setOutlineThickness(5);
+                        puzzles[count][i].setOutlineColor(Color::Black);
+                    }
                     //CHECK IF ENTERED WORD IS CORRECTLY GUESSED (Win case)
-                     if (attempt == word) {
-                         isGuessed=true;
-                     }
-                     count++;
-                     attempt = "";
-                     y = 0;
-                     x++;
+                    if (attempt == word) {
+                        isGuessed = true;
+                    }
+                    count++;
+                    attempt = "";
+                    y = 0;
+                    x++;
                 }
 
             }
@@ -193,24 +194,24 @@ int main() {
                 }
             }
             else if (y == 0) {
-                 continue;
+                continue;
             }
         }
 
-        mainWindow.clear(Color(237, 210, 183)); 
+        mainWindow.clear(Color(237, 210, 183));
         mainWindow.draw(Exit.getButton());
         mainWindow.draw(WordleText);
         mainWindow.draw(Names);
-       
+
         //LOSE CASE
-        if (x == 5) {
+        if (x > 4) {
             mainWindow.draw(youLost);
             mainWindow.draw(guess);
         }
+
         //WIN CASE
-        if (isGuessed) {
-            mainWindow.draw(youWon);
-        }
+        if (isGuessed) mainWindow.draw(youWon);
+
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
                 mainWindow.draw(puzzles[i][j]);
@@ -221,7 +222,7 @@ int main() {
 
         mainWindow.display();
     }
-    
+
     return 0;
 }
 
