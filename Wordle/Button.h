@@ -26,9 +26,6 @@ public:
 		e = E;
 		fillColor = FillColor;
 
-		
-		
-
 		button.setPosition(position);
 		button.setSize(size);
 		button.setFillColor(fillColor);
