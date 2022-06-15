@@ -6,7 +6,7 @@ using namespace std;
 int main() {
 
     //WINDOW DECLARATION AND PROPERTIES
-    RenderWindow mainWindow(VideoMode(1200, 900), "Wordle", Style::Close);
+    RenderWindow mainWindow(VideoMode(1200, 900), "Wordle", Style::None);
     mainWindow.setKeyRepeatEnabled(false);
     mainWindow.setFramerateLimit(60);
 
@@ -65,7 +65,7 @@ int main() {
     }
 
     int x = 0, y = 0;
-    string word = "couch", attempt = "";
+    string word = "build", attempt = "";
 
 
     Text guess;
