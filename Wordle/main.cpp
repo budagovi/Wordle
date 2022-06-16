@@ -1,14 +1,55 @@
-
 #include "Button.h"
+#include <iostream>
+
 using namespace sf;
 using namespace std;
+
+//WINDOW CONSTANT SIZES
+const int length = 1200;
+const int width = 900;
+
+//FUNCTION FOR LOADING ALL TEXTURES AT ONCE
+void load(Texture* t) {
+
+    t[0].loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");           //LETTER A
+    t[1].loadFromFile("C:/VisualStudio/Wordle/Wordle/B.jpg");           //LETTER B
+    t[2].loadFromFile("C:/VisualStudio/Wordle/Wordle/C.jpg");           //LETTER C
+    t[3].loadFromFile("C:/VisualStudio/Wordle/Wordle/D.png");           //LETTER D
+    t[4].loadFromFile("C:/VisualStudio/Wordle/Wordle/E.png");           //LETTER E
+    t[5].loadFromFile("C:/VisualStudio/Wordle/Wordle/F.png");           //LETTER F
+    t[6].loadFromFile("C:/VisualStudio/Wordle/Wordle/G.png");           //LETTER G
+    t[7].loadFromFile("C:/VisualStudio/Wordle/Wordle/H.png");           //LETTER H
+    t[8].loadFromFile("C:/VisualStudio/Wordle/Wordle/I.png");           //LETTER I
+    t[9].loadFromFile("C:/VisualStudio/Wordle/Wordle/J.png");           //LETTER J
+    t[10].loadFromFile("C:/VisualStudio/Wordle/Wordle/K.png");          //LETTER K
+    t[11].loadFromFile("C:/VisualStudio/Wordle/Wordle/L.png");          //LETTER L
+    t[12].loadFromFile("C:/VisualStudio/Wordle/Wordle/M.png");          //LETTER M
+    t[13].loadFromFile("C:/VisualStudio/Wordle/Wordle/N.png");          //LETTER N
+    t[14].loadFromFile("C:/VisualStudio/Wordle/Wordle/O.png");          //LETTER O
+    t[15].loadFromFile("C:/VisualStudio/Wordle/Wordle/P.png");          //LETTER P
+    t[16].loadFromFile("C:/VisualStudio/Wordle/Wordle/Q.png");          //LETTER Q
+    t[17].loadFromFile("C:/VisualStudio/Wordle/Wordle/R.png");          //LETTER R
+    t[18].loadFromFile("C:/VisualStudio/Wordle/Wordle/S.png");          //LETTER S
+    t[19].loadFromFile("C:/VisualStudio/Wordle/Wordle/T.png");          //LETTER T
+    t[20].loadFromFile("C:/VisualStudio/Wordle/Wordle/U.png");          //LETTER U
+    t[21].loadFromFile("C:/VisualStudio/Wordle/Wordle/V.png");          //LETTER V
+    t[22].loadFromFile("C:/VisualStudio/Wordle/Wordle/W.png");          //LETTER W
+    t[23].loadFromFile("C:/VisualStudio/Wordle/Wordle/X.png");          //LETTER X
+    t[24].loadFromFile("C:/VisualStudio/Wordle/Wordle/Y.png");          //LETTER Y
+    t[25].loadFromFile("C:/VisualStudio/Wordle/Wordle/Z.png");          //LETTER Z
+
+}
 
 int main() {
 
     //WINDOW DECLARATION AND PROPERTIES
-    RenderWindow mainWindow(VideoMode(1200, 900), "Wordle", Style::None);
+    RenderWindow mainWindow(VideoMode(length, width), "Wordle", Style::None);
     mainWindow.setKeyRepeatEnabled(false);
     mainWindow.setFramerateLimit(60);
+
+    //CALLING FUNCTION AND LOADING ALL TEXTURES
+    Texture Letters[26];
+    load(Letters);
 
 
     Font comic;
@@ -64,8 +105,7 @@ int main() {
         yCoordinate += 110;
     }
 
-    int x = 0, y = 0;
-    string word = "build", attempt = "";
+    string word = "build", attempt = "";   //here we should add a function for randomizing word
 
 
     Text guess;
@@ -76,42 +116,15 @@ int main() {
     guess.setPosition(505, 790);
     guess.setString(word);
 
-    Texture Letters[26];
-    Letters[0].loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");
-    Letters[1].loadFromFile("C:/VisualStudio/Wordle/Wordle/B.jpg");
-    Letters[2].loadFromFile("C:/VisualStudio/Wordle/Wordle/C.jpg");
-    Letters[3].loadFromFile("C:/VisualStudio/Wordle/Wordle/D.png");
-    Letters[4].loadFromFile("C:/VisualStudio/Wordle/Wordle/E.png");
-    Letters[5].loadFromFile("C:/VisualStudio/Wordle/Wordle/F.png");
-    Letters[6].loadFromFile("C:/VisualStudio/Wordle/Wordle/G.png");
-    Letters[7].loadFromFile("C:/VisualStudio/Wordle/Wordle/H.png");
-    Letters[8].loadFromFile("C:/VisualStudio/Wordle/Wordle/I.png");
-    Letters[9].loadFromFile("C:/VisualStudio/Wordle/Wordle/J.png");
-    Letters[10].loadFromFile("C:/VisualStudio/Wordle/Wordle/K.png");
-    Letters[11].loadFromFile("C:/VisualStudio/Wordle/Wordle/L.png");
-    Letters[12].loadFromFile("C:/VisualStudio/Wordle/Wordle/M.png");
-    Letters[13].loadFromFile("C:/VisualStudio/Wordle/Wordle/N.png");
-    Letters[14].loadFromFile("C:/VisualStudio/Wordle/Wordle/O.png");
-    Letters[15].loadFromFile("C:/VisualStudio/Wordle/Wordle/P.png");
-    Letters[16].loadFromFile("C:/VisualStudio/Wordle/Wordle/Q.png");
-    Letters[17].loadFromFile("C:/VisualStudio/Wordle/Wordle/R.png");
-    Letters[18].loadFromFile("C:/VisualStudio/Wordle/Wordle/S.png");
-    Letters[19].loadFromFile("C:/VisualStudio/Wordle/Wordle/T.png");
-    Letters[20].loadFromFile("C:/VisualStudio/Wordle/Wordle/U.png");
-    Letters[21].loadFromFile("C:/VisualStudio/Wordle/Wordle/V.png");
-    Letters[22].loadFromFile("C:/VisualStudio/Wordle/Wordle/W.png");
-    Letters[23].loadFromFile("C:/VisualStudio/Wordle/Wordle/X.png");
-    Letters[24].loadFromFile("C:/VisualStudio/Wordle/Wordle/Y.png");
-    Letters[25].loadFromFile("C:/VisualStudio/Wordle/Wordle/Z.png");
     Texture empty;
     empty.loadFromFile("C:/VisualStudio/Wordle/Wordle/Bg.png");
-
 
     Button Exit;
     Texture exit;
     exit.loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");
 
-    bool isGuessed = false;
+    bool isGuessed = false;     //TO STOP THE GAME AT PROPER TIME
+    int x = 0, y = 0;           //TO CONTROL IN WHICH PUZZLE WE ARE ACTING
 
     while (mainWindow.isOpen()) {
 
@@ -119,13 +132,12 @@ int main() {
 
         while (mainWindow.pollEvent(e)) {
 
-            //BUTTON CONSTRUCTORS:
-            Exit.createButton(Vector2f(1080, 20), Vector2f(80, 80), e, Color(237, 210, 183), exit);
-
             //WINDOW CLOSE CASES
             if (e.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape)) mainWindow.close();
 
-            //BOTTOMS SECTION
+            //BUTTONS SECTION
+            Exit.createButton(Vector2f(1080, 20), Vector2f(80, 80), e, Color(237, 210, 183), exit);
+
             if (e.type == sf::Event::MouseButtonPressed) {
 
                 if (e.mouseButton.button == sf::Mouse::Left) {
@@ -136,9 +148,9 @@ int main() {
 
                 }
             }
-            
-            //ENTERING LOWER CASE LETTERS INTO THE ROW OF 5 PUZZLES
-            if (e.type == Event::TextEntered && e.text.unicode > 96 && e.text.unicode < 123) {
+
+            //ENTERING LOWER CASE LETTERS INTO THE ROW
+            if (e.text.unicode >= 'a' && e.text.unicode <= 'z') {
                 if (y >= 0 && y < 5 && !isGuessed) {
                     puzzles[x][y].setTexture(&Letters[e.text.unicode - 97]);
                     attempt += char(e.text.unicode);
@@ -146,6 +158,17 @@ int main() {
                     cout << attempt << endl;
                 }
             }
+
+            //REMOVING LOWER CASE LETTERS INTO THE ROW
+            else if (e.text.unicode == 0x08 && Keyboard::isKeyPressed(Keyboard::BackSpace)) {
+                if (y != 0) {
+                    y--;
+                    puzzles[x][y].setTexture(&empty);
+                    attempt = attempt.substr(0, attempt.length() - 1);
+                    cout << "test" << endl;
+                }
+            }
+
             //AFTER PRESSING "ENTER" THE GAME CHECKS THE TYPED WORD 
             if (Keyboard::isKeyPressed(Keyboard::Enter)) {
                 if (attempt.length() == 5) {
@@ -186,39 +209,29 @@ int main() {
                 }
 
             }
-            else if (Keyboard::isKeyPressed(Keyboard::BackSpace) || Keyboard::isKeyPressed(Keyboard::Backspace)) {
-                if (y != 0) {
-                    y--;
-                    puzzles[x][y].setTexture(&empty);
-                    attempt = attempt.substr(0, attempt.length() - 1);
-                }
-            }
-            else if (y == 0) {
-                continue;
-            }
+
+
         }
 
+        //DISPLAY COMPONENTS
         mainWindow.clear(Color(237, 210, 183));
         mainWindow.draw(Exit.getButton());
         mainWindow.draw(WordleText);
         mainWindow.draw(Names);
 
-        //LOSE CASE
-        if (x > 4) {
+        //WIN/LOSE CASE
+        if (isGuessed) mainWindow.draw(youWon);
+        else if (x > 4 && !isGuessed) {
             mainWindow.draw(youLost);
             mainWindow.draw(guess);
         }
 
-        //WIN CASE
-        if (isGuessed) mainWindow.draw(youWon);
-
+        //ITERATING TO DISPLAY UPDATED PUZZLES
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 5; ++j) {
                 mainWindow.draw(puzzles[i][j]);
             }
         }
-
-
 
         mainWindow.display();
     }

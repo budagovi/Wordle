@@ -1,13 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/window.hpp>
-#include <SFML/Network.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
 
 using namespace sf;
-using namespace std;
 
 class Button {
 private:
@@ -18,8 +12,8 @@ private:
 	Color fillColor;
 	Texture texture;
 
-
 public:
+	//DEFAULT CONSTRUCTOR FOR BUTTON CLASS
 	void createButton(Vector2f Position, Vector2f Size, Event E, Color FillColor, const sf::Texture & Texture) {
 		size = Size;
 		position = Position;
@@ -33,13 +27,14 @@ public:
 
 	}
 
+	//METHOD TO GET THE SHAPE AND DRAW
 	RectangleShape getButton() {
 		return button;
 	}
 
+	//METHOD TO CHECK IF THE USER CLICKED ON BUTTON
 	bool isClicked() {
 		if (e.mouseButton.x > position.x && e.mouseButton.x < position.x + size.x && e.mouseButton.y>position.y && e.mouseButton.y < position.y + size.y) return true;
 		else return false;
 	}
-	
 };
