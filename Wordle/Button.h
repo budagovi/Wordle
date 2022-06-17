@@ -14,20 +14,23 @@ private:
 
 public:
 	//DEFAULT CONSTRUCTOR FOR BUTTON CLASS
-	void createButton(Vector2f Position, Vector2f Size, Event E, Color FillColor, const sf::Texture & Texture) {
+	void createButton(Vector2f Position, Vector2f Size, Color FillColor, const sf::Texture & Texture) {
 		size = Size;
 		position = Position;
-		e = E;
 		fillColor = FillColor;
 
 		button.setPosition(position);
 		button.setSize(size);
 		button.setFillColor(fillColor);
 		button.setTexture(&Texture);
-
 	}
 
-	//METHOD TO GET THE SHAPE AND DRAW
+	//METHOD TO INDICATE EVENT
+	void setEvent(Event E) {
+		e = E;
+	}
+
+	//METHOD TO GET DRAWABLE BUTTON
 	RectangleShape getButton() {
 		return button;
 	}
