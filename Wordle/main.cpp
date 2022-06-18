@@ -66,8 +66,7 @@ string selectNoun() {
     "train","skill","table","world","video","uncle" 
     };
     int index = (rand() % 30);
-    //return arr[index];
-    return "nouns";
+    return arr[index];
 }
 string selectVerb() {
     srand(time(0));
