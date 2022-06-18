@@ -1,6 +1,6 @@
-#include "Button.h"
 #include "Text.h"
-#include <iostream>
+#include "Button.h"
+#include "Teddy.h"
 
 using namespace sf;
 using namespace std;
@@ -9,74 +9,94 @@ using namespace std;
 const int length = 1200;
 const int width = 900;
 
-//FUNCTION FOR LOADING ALL TEXTURES AT ONCE
+//FUNCTIONS FOR LOADING ALL TEXTURES AND FONTS AT ONCE
 void loadTextures(Texture* t) {
 
-    t[0].loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");           //LETTER A
-    t[1].loadFromFile("C:/VisualStudio/Wordle/Wordle/B.jpg");           //LETTER B
-    t[2].loadFromFile("C:/VisualStudio/Wordle/Wordle/C.jpg");           //LETTER C
-    t[3].loadFromFile("C:/VisualStudio/Wordle/Wordle/D.png");           //LETTER D
-    t[4].loadFromFile("C:/VisualStudio/Wordle/Wordle/E.png");           //LETTER E
-    t[5].loadFromFile("C:/VisualStudio/Wordle/Wordle/F.png");           //LETTER F
-    t[6].loadFromFile("C:/VisualStudio/Wordle/Wordle/G.png");           //LETTER G
-    t[7].loadFromFile("C:/VisualStudio/Wordle/Wordle/H.png");           //LETTER H
-    t[8].loadFromFile("C:/VisualStudio/Wordle/Wordle/I.png");           //LETTER I
-    t[9].loadFromFile("C:/VisualStudio/Wordle/Wordle/J.png");           //LETTER J
-    t[10].loadFromFile("C:/VisualStudio/Wordle/Wordle/K.png");          //LETTER K
-    t[11].loadFromFile("C:/VisualStudio/Wordle/Wordle/L.png");          //LETTER L
-    t[12].loadFromFile("C:/VisualStudio/Wordle/Wordle/M.png");          //LETTER M
-    t[13].loadFromFile("C:/VisualStudio/Wordle/Wordle/N.png");          //LETTER N
-    t[14].loadFromFile("C:/VisualStudio/Wordle/Wordle/O.png");          //LETTER O
-    t[15].loadFromFile("C:/VisualStudio/Wordle/Wordle/P.png");          //LETTER P
-    t[16].loadFromFile("C:/VisualStudio/Wordle/Wordle/Q.png");          //LETTER Q
-    t[17].loadFromFile("C:/VisualStudio/Wordle/Wordle/R.png");          //LETTER R
-    t[18].loadFromFile("C:/VisualStudio/Wordle/Wordle/S.png");          //LETTER S
-    t[19].loadFromFile("C:/VisualStudio/Wordle/Wordle/T.png");          //LETTER T
-    t[20].loadFromFile("C:/VisualStudio/Wordle/Wordle/U.png");          //LETTER U
-    t[21].loadFromFile("C:/VisualStudio/Wordle/Wordle/V.png");          //LETTER V
-    t[22].loadFromFile("C:/VisualStudio/Wordle/Wordle/W.png");          //LETTER W
-    t[23].loadFromFile("C:/VisualStudio/Wordle/Wordle/X.png");          //LETTER X
-    t[24].loadFromFile("C:/VisualStudio/Wordle/Wordle/Y.png");          //LETTER Y
-    t[25].loadFromFile("C:/VisualStudio/Wordle/Wordle/Z.png");          //LETTER Z
-    t[26].loadFromFile("C:/VisualStudio/Wordle/Wordle/Bg.png");         //REMOVED FIELD
-    //EMPTY FIELD [27]
-    t[28].loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");       //"EXIT" BUTTON
-    t[29].loadFromFile("C:/VisualStudio/Wordle/Wordle/nouns.png");       //"NOUNS" BUTTON
-    t[30].loadFromFile("C:/VisualStudio/Wordle/Wordle/verbs.png");     //"VERBS" BUTTON
-    t[31].loadFromFile("C:/VisualStudio/Wordle/Wordle/adjectives.png");       //"ADJECTIVES" BUTTON
+    t[0].loadFromFile("C:/VisualStudio/Wordle/Wordle/A.jpg");               //LETTER A
+    t[1].loadFromFile("C:/VisualStudio/Wordle/Wordle/B.jpg");               //LETTER B
+    t[2].loadFromFile("C:/VisualStudio/Wordle/Wordle/C.jpg");               //LETTER C
+    t[3].loadFromFile("C:/VisualStudio/Wordle/Wordle/D.png");               //LETTER D
+    t[4].loadFromFile("C:/VisualStudio/Wordle/Wordle/E.png");               //LETTER E
+    t[5].loadFromFile("C:/VisualStudio/Wordle/Wordle/F.png");               //LETTER F
+    t[6].loadFromFile("C:/VisualStudio/Wordle/Wordle/G.png");               //LETTER G
+    t[7].loadFromFile("C:/VisualStudio/Wordle/Wordle/H.png");               //LETTER H
+    t[8].loadFromFile("C:/VisualStudio/Wordle/Wordle/I.png");               //LETTER I
+    t[9].loadFromFile("C:/VisualStudio/Wordle/Wordle/J.png");               //LETTER J
+    t[10].loadFromFile("C:/VisualStudio/Wordle/Wordle/K.png");              //LETTER K
+    t[11].loadFromFile("C:/VisualStudio/Wordle/Wordle/L.png");              //LETTER L
+    t[12].loadFromFile("C:/VisualStudio/Wordle/Wordle/M.png");              //LETTER M
+    t[13].loadFromFile("C:/VisualStudio/Wordle/Wordle/N.png");              //LETTER N
+    t[14].loadFromFile("C:/VisualStudio/Wordle/Wordle/O.png");              //LETTER O
+    t[15].loadFromFile("C:/VisualStudio/Wordle/Wordle/P.png");              //LETTER P
+    t[16].loadFromFile("C:/VisualStudio/Wordle/Wordle/Q.png");              //LETTER Q
+    t[17].loadFromFile("C:/VisualStudio/Wordle/Wordle/R.png");              //LETTER R
+    t[18].loadFromFile("C:/VisualStudio/Wordle/Wordle/S.png");              //LETTER S
+    t[19].loadFromFile("C:/VisualStudio/Wordle/Wordle/T.png");              //LETTER T
+    t[20].loadFromFile("C:/VisualStudio/Wordle/Wordle/U.png");              //LETTER U
+    t[21].loadFromFile("C:/VisualStudio/Wordle/Wordle/V.png");              //LETTER V
+    t[22].loadFromFile("C:/VisualStudio/Wordle/Wordle/W.png");              //LETTER W
+    t[23].loadFromFile("C:/VisualStudio/Wordle/Wordle/X.png");              //LETTER X
+    t[24].loadFromFile("C:/VisualStudio/Wordle/Wordle/Y.png");              //LETTER Y
+    t[25].loadFromFile("C:/VisualStudio/Wordle/Wordle/Z.png");              //LETTER Z
+    t[26].loadFromFile("C:/VisualStudio/Wordle/Wordle/Bg.png");             //REMOVED FIELD
+    t[27].loadFromFile("C:/VisualStudio/Wordle/Wordle/empty.jpg");          //EMPTY FIELD
+    t[28].loadFromFile("C:/VisualStudio/Wordle/Wordle/Exit.png");           //"EXIT" BUTTON
+    t[29].loadFromFile("C:/VisualStudio/Wordle/Wordle/nouns.png");          //"NOUNS" BUTTON
+    t[30].loadFromFile("C:/VisualStudio/Wordle/Wordle/verbs.png");          //"VERBS" BUTTON
+    t[31].loadFromFile("C:/VisualStudio/Wordle/Wordle/adjectives.png");     //"ADJECTIVES" BUTTON
+    t[32].loadFromFile("C:/VisualStudio/Wordle/Wordle/teddyHi.png");        //TEDDY GREETING
+    t[33].loadFromFile("C:/VisualStudio/Wordle/Wordle/teddyConfused.png");  //TEDDY IS CONFUSED
+    t[34].loadFromFile("C:/VisualStudio/Wordle/Wordle/teddySweaty.png");    //TEDDY IS VERY CONFUSED
+    t[35].loadFromFile("C:/VisualStudio/Wordle/Wordle/teddyCry.png");       //TEDDY IS CRYING =(
+    t[36].loadFromFile("C:/VisualStudio/Wordle/Wordle/teddyHappy.png");     //TEDDY IS HAPPY =)
 }
-
 void loadFonts(Font* f) {
     f[0].loadFromFile("C:/VisualStudio/Wordle/Wordle/Fonts/comic.ttf");             //Comic
     f[1].loadFromFile("C:/VisualStudio/Wordle/Wordle/Fonts/BadlyStamped.ttf");      //BadlyStamped
-    //for menu
 }
 
+//RANDOMIZERS
 string selectNoun() {
     srand(time(0));
-    string arr[30] = { "candy", "enemy", "bacon", "beach", "apple"};
-    int index = (rand() % 5);
+    string arr[30] = { 
+    "candy","enemy","error","beach","apple","mount", 
+    "bread","adult","chair","child","crown","brain",
+    "night","match","plant","river","power","shape",
+    "group","heart","input","light","phone","pride",
+    "train","skill","table","world","video","uncle" 
+    };
+    int index = (rand() % 30);
     //return arr[index];
     return "nouns";
 }
-
 string selectVerb() {
     srand(time(0));
-    string arr[30] = { "study", "break", "build", "teach", "spell"};
-    int index = (rand() % 5);
-    //return arr[index];
-    return "verbs";
+    string arr[30] = { 
+    "study","break","build","teach","spell","trust",
+    "waste","argue","clean","close","judge","marry",
+    "press","prove","touch","check","enjoy","enter",
+    "raise","reach","shoot","treat","start","speak",
+    "solve","offer","order","dance","cover","count" 
+    };
+    int index = (rand() % 30);
+    return arr[index];
 }
-
 string selectAdjective() {
     srand(time(0));
-    string arr[30] = { "sweet", "green", "smart", "great", "funny" };
-    int index = (rand() % 5);
-    //return arr[index];
-    return "adjct";
+    string arr[30] = { 
+    "sweet","green","smart","great","funny","large",
+    "legal","dirty","false","lucky","major","quick",
+    "quiet","right","round","short","small","thick",
+    "young","white","wrong","tight","early","proud",
+    "sharp","giant","fresh","happy","empty","crazy" 
+    };
+    int index = (rand() % 30);
+    return arr[index];
 }
 
 int main() {
+
+    bool startPoint = false;            //TO IDENTIFY START
 
     //WINDOW DECLARATION AND PROPERTIES
     RenderWindow mainWindow(VideoMode(length, width), "Wordle", Style::None);
@@ -91,14 +111,10 @@ int main() {
     offGame.setOutlineThickness(5);
     offGame.setOutlineColor(Color::Black);
 
-    //RANDOMIZER
     string word, attempt = "";
 
-
-
-
     //CREATING TEXTURES
-    Texture Letters[32];   
+    Texture Letters[37];   
     loadTextures(Letters);
 
     //CREATING FONTS
@@ -107,11 +123,11 @@ int main() {
 
     //CREATING TEXTS FOR WINDOW
     text Wordle, Names, Guess, youLost, youWon;
-    Wordle.createText(fonts[1], 75, Color::Black, Text::Style::Regular, Vector2f(7, 10), "Wordle");
-    Names.createText(fonts[0], 25, Color::Black, Text::Style::Regular, Vector2f(10, 100), "Mariam Alakhverdova \nLuka Budagovi");
-    Guess.createText(fonts[0], 72, Color::Red, Text::Style::Bold, Vector2f(505, 790), word);
+    Wordle.createText(fonts[1], 75, Color(59, 42, 14), Text::Style::Regular, Vector2f(7, 10), "Wordle");
+    Names.createText(fonts[0], 25, Color(59, 42, 10, 180), Text::Style::Regular, Vector2f(10, 100), "Mariam Alakhverdova \nLuka Budagovi");
+    Guess.createText(fonts[0], 72, Color(176, 0, 0), Text::Style::Bold, Vector2f(505, 790), word);
     youLost.createText(fonts[0], 72, Color::Black, Text::Style::Bold, Vector2f(440, 680), "You Lost;(");
-    youWon.createText(fonts[0], 72, Color::Black, Text::Style::Bold, Vector2f(440, 680), "You Win!");
+    youWon.createText(fonts[0], 72, Color::Black, Text::Style::Bold, Vector2f(440, 680), "You Won!");
 
     //CREATING BUTTONS
     Button Exit, Nouns, Verbs, Adjectives;
@@ -136,7 +152,15 @@ int main() {
         yCoordinate += 110;
     }
 
-    bool isGuessed = true;         //TO STOP THE GAME AT PROPER TIME
+    //CREATING TEDDY EMOTION TEXTURES
+    Teddy teddyHi, teddyCry, teddyConfused, teddySweaty, teddyHappy;
+    teddyHi.createTeddy(Vector2f(750, 460), Vector2f(508, 412), Letters[32]);
+    teddyConfused.createTeddy(Vector2f(868, 500), Vector2f(334, 338), Letters[33]);
+    teddySweaty.createTeddy(Vector2f(24, 510), Vector2f(309, 349), Letters[34]);
+    teddyCry.createTeddy(Vector2f(800, 520), Vector2f(292, 342), Letters[35]);
+    teddyHappy.createTeddy(Vector2f(30, 500), Vector2f(421, 349), Letters[36]);
+
+    bool isGuessed = true;          //TO STOP THE GAME AT PROPER TIME
     int x = 0, y = 0, count = 0;    //TO CONTROL IN WHICH PUZZLE WE ARE ACTING
 
     while (mainWindow.isOpen()) {
@@ -155,18 +179,27 @@ int main() {
             Adjectives.setEvent(e);
 
             if (e.type == sf::Event::MouseButtonPressed) {
+
                 if (e.mouseButton.button == sf::Mouse::Left) {
-                    cout << e.mouseButton.x << endl;
-                    cout << e.mouseButton.y << endl;
+
                     if (Exit.isClicked()) mainWindow.close();
-                }
-                if (isGuessed) {
+                    else if ((isGuessed || x > 4) && (Nouns.isClicked() || Verbs.isClicked() || Adjectives.isClicked())) {
 
-                    if (Nouns.isClicked()) word = selectNoun();
-                    else if (Verbs.isClicked()) word = selectVerb();
-                    else if (Adjectives.isClicked()) word = selectAdjective();
-                    isGuessed = false;
+                        if (Nouns.isClicked()) word = selectNoun();
+                        else if (Verbs.isClicked()) word = selectVerb();
+                        else if (Adjectives.isClicked()) word = selectAdjective();
 
+                        for (int i = 0; i < 5; ++i) {
+                            for (int j = 0; j < 5; ++j) {
+                                puzzles[i][j].setTexture(&Letters[27]);
+                                puzzles[i][j].setOutlineThickness(3);
+                                puzzles[i][j].setFillColor(Color(219, 141, 148));
+                            }
+                        }
+                        startPoint = true, isGuessed = false;
+                        x = 0, y = 0, count = 0;
+                        Guess.setText(word);
+                    }
                 }
             }
             //ENTERING LOWER CASE LETTERS INTO THE ROW
@@ -176,7 +209,6 @@ int main() {
                     puzzles[x][y].setTexture(&Letters[e.text.unicode - 97]);
                     attempt += char(e.text.unicode);
                     y++;
-                    cout << attempt << endl;
                 }
             }
 
@@ -186,7 +218,6 @@ int main() {
                     y--;
                     puzzles[x][y].setTexture(&Letters[26]);
                     attempt = attempt.substr(0, attempt.length() - 1);
-                    cout << "test" << endl;
                 }
             }
 
@@ -243,15 +274,16 @@ int main() {
                 mainWindow.draw(puzzles[i][j]);
             }
         }
-
         //WIN/LOSE CASE
         if (isGuessed) {
-            mainWindow.draw(youWon.getText());
+            if (startPoint) mainWindow.draw(youWon.getText());
             mainWindow.draw(Guess.getText());
             mainWindow.draw(offGame);
             mainWindow.draw(Nouns.getButton());
             mainWindow.draw(Verbs.getButton());
             mainWindow.draw(Adjectives.getButton());
+            if (!startPoint) mainWindow.draw(teddyHi.getTeddyPicture());
+            else mainWindow.draw(teddyHappy.getTeddyPicture());
         }
         else if (x > 4 && !isGuessed) {
             mainWindow.draw(youLost.getText());
@@ -260,6 +292,11 @@ int main() {
             mainWindow.draw(Nouns.getButton());
             mainWindow.draw(Verbs.getButton());
             mainWindow.draw(Adjectives.getButton());
+            mainWindow.draw(teddyCry.getTeddyPicture());
+        }
+        else {
+            if (x < 3) mainWindow.draw(teddyConfused.getTeddyPicture());
+            else mainWindow.draw(teddySweaty.getTeddyPicture());
         }
 
         mainWindow.display();

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
-using namespace std;
+using namespace std; 
 
 class text {
 private:
@@ -15,7 +15,7 @@ private:
 	string line;
 
 public:
-	//DEFAULT CONSTRUCTOR FOR DISPALY TEXT
+	//DEFAULT FOR CREATING DISPALY TEXTS
 	void createText(Font f, int s, Color c, Text::Style st, Vector2f p, string l) {
 		font = f;
 		charSize = s;
@@ -35,6 +35,13 @@ public:
 	//METHOD TO GET DRAWABLE TEXT
 	Text getText() {
 		return text;
+	}
+
+	//METHOD FOR INDICATING STRING
+	void setText(string n) {
+		line = n;
+		line[0] = n[0] - 32;
+		text.setString(line);
 	}
 };
 

@@ -13,7 +13,7 @@ private:
 	Texture texture;
 
 public:
-	//DEFAULT CONSTRUCTOR FOR BUTTON CLASS
+	//FUNCTION FOR CREATING BUTTON CLASS 
 	void createButton(Vector2f Position, Vector2f Size, Color FillColor, const sf::Texture & Texture) {
 		size = Size;
 		position = Position;
