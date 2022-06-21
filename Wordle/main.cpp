@@ -226,7 +226,7 @@ int main() {
                     string h = "*****";         // TO DETECT RED LETTERS;
                     string check(word);         // TO DETECT GREEN AND YELLOW LETTERS;
 
-                    //ITERATING THROUGH THE WORD TO DETECT GREEN WORDS;
+                    //ITERATING THROUGH THE WORD TO DETECT GREEN LETTERS;
                     for (int i = 0; i < 5; ++i) {
                         if (attempt[i] == word[i]) {
                             puzzles[count][i].setFillColor(Color(108, 218, 113));
